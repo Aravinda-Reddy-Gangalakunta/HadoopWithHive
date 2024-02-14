@@ -126,16 +126,11 @@ services:
   hue:
     image: gethue/hue:latest
     container_name: hue
-    environment:
-      - HUE_DATABASE_ENGINE=postgresql
-      - HUE_DATABASE_HOST=hive-metastore-postgresql
-      - HUE_DATABASE_NAME=metastore
-      - HUE_DATABASE_PORT=10000
-      - HUE_DATABASE_USER=hive
-      - HUE_DATABASE_PASSWORD=hive
     ports:
       - "8888:8888"
     restart: always
+    volumes:
+      - ./hue.ini:/usr/share/hue/desktop/conf/hue.ini
 
 volumes:
   hadoop_namenode:
